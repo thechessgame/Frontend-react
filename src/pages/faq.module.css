@@ -1,0 +1,117 @@
+.ruleBody {
+  background: -webkit-linear-gradient(left, #0502b4, #0fdefa);
+  height: 100%;
+  color: white;
+  width: 85%;
+  padding-top: 8%;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 3%;
+}
+
+.title {
+  background: -webkit-linear-gradient(left, white, #0fdefa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 45px;
+}
+
+.metadata {
+  margin-top: 20px;
+  color: #0fdefa;
+  display: inline;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.here {
+  margin-top: 20px;
+  color: #fab00f;
+  font-weight: 500;
+  font-size: 17px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-style: italic;
+}
+u {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: #fab00f;
+  font-size: 16px;
+}
+
+.container h6 {
+  background: -webkit-linear-gradient(left, white, #0fdefa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.container p {
+  color: #6deeff;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.footer {
+  background: -webkit-linear-gradient(left, #0502b4, #0fdefa);
+  width: 100%;
+  height: 70px;
+  border: solid 1px -webkit-linear-gradient(left, #0fdefa, white);
+  border-radius: 10px;
+  padding: 2px;
+}
+
+.footerQuestion {
+  display: inline-block;
+  margin-left: 23px;
+  background: -webkit-linear-gradient(left, white, #0fdefa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  margin-top: -16px;
+}
+
+.footer p {
+  color: #6deeff;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  margin-left: 70px;
+  margin-top: -18px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.footerImg {
+  width: 25px;
+  height: 40px;
+  margin-left: 23px;
+  margin-top: 13px;
+}
+
+.contactBtn {
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
+  cursor: default;
+  background-color: #2d3439;
+  box-sizing: border-box;
+  margin: 0em;
+  font: 450 14px system-ui;
+  padding: 1px 7px 2px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #2d3439;
+  border-image: initial;
+  font-family: "Times New Roman", Times, serif;
+  width: 85px;
+  height: 40px;
+  border-radius: 15px;
+  color: #3ce7e7;
+  font-weight: 600;
+  /* padding-left: 10px; */
+  position: absolute;
+  right: 250px;
+  bottom: -128px;
+}
+.contactBtn:hover {
+  background-color: #3c5a6e;
+}
+.contactBtn:active {
+  background-color: #2d3439;
+}
