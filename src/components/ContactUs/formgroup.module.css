@@ -1,0 +1,26 @@
+.form-group {
+  margin: 10px;
+}
+
+.form-control {
+  width: 80%;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border-image: initial;
+  border-style: solid;
+  border-color: #f9feff;
+  margin: 10px 0px;
+  outline: none;
+}
+
+.form-control:focus {
+  border-color: #0b6975;
+}
+
+#submitBtn {
+  background-color: #13b6cc;
+}
+
+#submitBtn:hover {
+  background-color: #0fe3ff;
+}

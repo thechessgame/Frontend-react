@@ -1,0 +1,12 @@
+.contact-form label {
+  font-weight: 600;
+}
+.contact-form button {
+  background: #ff9b00;
+  color: #f8f8ff;
+  font-weight: 600;
+  width: 25%;
+}
+.contact-formbutton::focus {
+  box-shadow: none;
+}

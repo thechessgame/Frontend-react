@@ -25,45 +25,6 @@
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
 }
-.contact-form label {
-  font-weight: 600;
-}
-.contact-form button {
-  background: #ff9b00;
-  color: #f8f8ff;
-  font-weight: 600;
-  width: 25%;
-}
-.contact-formbutton::focus {
-  box-shadow: none;
-}
-
-.form-control {
-  width: 80%;
-  padding: 5px 10px;
-  border-radius: 5px;
-  border-image: initial;
-  border-style: solid;
-  border-color: #f9feff;
-  margin: 10px 0px;
-  outline: none;
-}
-
-.form-control:focus {
-  border-color: #0b6975;
-}
-
-.form-group {
-  margin: 10px;
-}
-
-#submitBtn {
-  background-color: #13b6cc;
-}
-
-#submitBtn:hover {
-  background-color: #0fe3ff;
-}
 
 @media only screen and (max-width: 768px) {
   .col-md-3 {
