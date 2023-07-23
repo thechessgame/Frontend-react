@@ -1,131 +1,136 @@
-import { useState, useRef, useContext } from 'react';
-import { useLocation, redirect, useNavigate } from 'react-router-dom';
+import { useRef, useState } from 'react';
+import { useLocation, useNavigation, Form, Link, useActionData } from 'react-router-dom';
 
-import AuthContext from '../../store/auth-context';
 import classes from './AuthForm.module.css';
+import LoadingSpinner from '../Loader/LoadingSpinner.js';
 
 const AuthForm = () => {
-  // const history = useHistory();
   const location = useLocation();
-  // console.log(location)
   const loginPage = location.pathname.split("/").slice(-1)[0] == "login" ? true : false;
-  const emailInputRef = useRef();
+
+  const confirmpasswordInputRef = useRef();
   const passwordInputRef = useRef();
-  const navigate = useNavigate()
-  const authCtx = useContext(AuthContext);
+  const emailInputRef = useRef();
 
-  const [isLogin, setIsLogin] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
+  let navigation = useNavigation();
+  let isSubmitting = navigation.state === 'submitting';
 
-  const switchAuthModeHandler = () => {
-    navigate(!loginPage ? "/login" : "/signup");
-  };
+  let data = useActionData();
 
-  const submitHandler = (event) => {
-    event.preventDefault();
+  let [cpLable, setCPLable] = useState("")
+  let [pLable, setPLable] = useState("")
+  let [eLable, setELable] = useState("")
+  let [disableBtn, setDisableBtn] = useState(true)
 
-    if (event) {
-      navigate("/play");
-      return
+  const disbaleHandler = () => {
+    let email = emailInputRef?.current?.value;
+    let password = passwordInputRef?.current?.value;
+    let confirmpassword = confirmpasswordInputRef?.current?.value;
+    let isValidEmail = false;
+    let isValidPassword = false;
+    if (email) {
+      isValidEmail = String(email)
+        .toLowerCase()
+        .match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        ) ? true : false;
     }
-    const enteredEmail = emailInputRef.current.value;
-    const enteredPassword = passwordInputRef.current.value;
 
-    // optional: Add validation
+    if (password) {
+      isValidPassword = String(password)
+        .match(
+          /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
+        ) ? true : false;
+    }
 
-    setIsLoading(true);
-    let url;
-    if (isLogin) {
-      url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBZhsabDexE9BhcJbGxnZ4DiRlrCN9xe24';
+    if (!loginPage) {
+      if (confirmpassword.length >= 6 && confirmpassword !== password) {
+        setCPLable("Confirm Password must be same as Password")
+      } else {
+        setCPLable("")
+      }
+    }
+
+
+    if (password.length >= 6 && !isValidPassword) {
+      setPLable("Password must contain: 6 to 16 valid characters, at least a number and at least a special character.")
     } else {
-      url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBZhsabDexE9BhcJbGxnZ4DiRlrCN9xe24';
+      setPLable("")
     }
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify({
-        email: enteredEmail,
-        password: enteredPassword,
-        returnSecureToken: true,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => {
-        setIsLoading(false);
-        if (res.ok) {
-          return res.json();
-        } else {
-          return res.json().then((data) => {
-            let errorMessage = 'Authentication failed!';
-            // if (data && data.error && data.error.message) {
-            //   errorMessage = data.error.message;
-            // }
 
-            throw new Error(errorMessage);
-          });
-        }
-      })
-      .then((data) => {
-        const expirationTime = new Date(
-          new Date().getTime() + +data.expiresIn * 1000
-        );
-        authCtx.login(data.idToken, expirationTime.toISOString());
-        // history.replace('/');
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
-  };
+    if (email && !isValidEmail) {
+      setELable("Please enter a valid email")
+    } else {
+      setELable("")
+    }
+
+    if (isValidPassword && isValidEmail && ((confirmpassword === password) || loginPage)) {
+      setDisableBtn(false)
+    } else {
+      setDisableBtn(true)
+    }
+  }
+
   return (
-    <section className={classes.auth}>
-      <section className={classes.head}>
-        <h1 >{loginPage ? 'Login' : 'Sign Up'}</h1>
-      </section>
-      <section className={classes.body} >
-        <form onSubmit={submitHandler}>
-          <div className={classes.control}>
-            <label htmlFor='email'>Email</label>
-            <input type='email' id='email' required ref={emailInputRef} />
-          </div>
-          <div className={classes.control}>
-            <label htmlFor='password'>Password</label>
-            <input
-              type='password'
-              id='password'
-              required
-              ref={passwordInputRef}
-            />
-          </div>
-          {!loginPage &&
+    <>
+      {isSubmitting && <LoadingSpinner isLoading={true} />}
+      {!isSubmitting && <section className={classes.auth}>
+        <section className={classes.head}>
+          <h1 >{loginPage ? 'Login' : 'Sign Up'}</h1>
+        </section>
+        <section className={classes.body} >
+          <Form method='post' >
+            {data?.status == 401 && (<section className={classes.error}>
+              <div >{data?.message ? data.message : "Something went wrong"}
+              </div>
+            </section>)}
             <div className={classes.control}>
-              <label htmlFor='password'>Confirm Password</label>
+              <label htmlFor='email'>Email</label>
+              <input type='email' id='email' required
+                ref={emailInputRef} name='email' onChange={disbaleHandler} />
+              {eLable && <div className={classes.cpLabel}>{eLable}</div>}
+            </div>
+            <div className={classes.control}>
+              <label htmlFor='password'>Password</label>
               <input
                 type='password'
                 id='password'
                 required
                 ref={passwordInputRef}
+                name='password'
+                onChange={disbaleHandler}
               />
+              {pLable && <div className={classes.cpLabel}>{pLable}</div>}
             </div>
-          }
+            {!loginPage &&
+              <div className={classes.control}>
+                <label htmlFor='confirmpassword'>Confirm Password</label>
+                <input
+                  type='password'
+                  id='confirmpassword'
+                  required
+                  name='confirmpassword'
+                  onChange={disbaleHandler}
+                  ref={confirmpasswordInputRef}
+                />
+                {cpLable && <div className={classes.cpLabel}>{cpLable}</div>}
+              </div>
+            }
 
-          <div className={classes.actions}>
-            {!isLoading && (
-              <button>{loginPage ? 'Login' : 'Create Account'}</button>
-            )}
-            <button
-              type='button'
-              className={classes.toggle}
-              onClick={switchAuthModeHandler}
-            >
-              {loginPage ? 'Create new account' : 'Login with existing account'}
-            </button>
-          </div>
-        </form>
-      </section>
-    </section>
+            <div className={classes.actions}>
+              <button type='submit' disabled={disableBtn} className={disableBtn ? classes.disable : classes.enable}>{loginPage ? 'Login' : 'Create Account'}</button>
+              <Link
+                type='button'
+                className={classes.toggle}
+                to={loginPage ? '/signup' : '/login'}
+              >
+                {loginPage ? 'Create new account' : 'Login with existing account'}
+              </Link>
+            </div>
+          </Form>
+        </section>
+      </section>}
+    </>
   );
 };
 

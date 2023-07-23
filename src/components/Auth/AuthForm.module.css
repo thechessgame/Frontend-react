@@ -27,6 +27,17 @@
   height: 65px;
   margin-top: 35px;
 }
+.error {
+  background-color: inherit;
+  color: rgba(255, 5, 5, 0.877);
+  font-size: 19px;
+}
+.cpLabel {
+  background-color: inherit;
+  color: rgba(1, 2, 2, 0.877);
+  font-size: 12px;
+}
+
 .body {
   background-color: #a8c4f4;
   height: "50%";
@@ -68,15 +79,28 @@
   cursor: pointer;
   font: inherit;
   color: white;
-  background-color: #0804cc;
-  border: 1px solid #0804cc;
   border-radius: 4px;
   padding: 0.5rem 2.5rem;
 }
 
-.actions button:hover {
+.enable {
+  background-color: #0804cc;
+  border: 1px solid #0804cc;
+}
+
+.enable:hover {
   background-color: #4043e6;
   border-color: #4043e6;
+}
+
+.disable {
+  background-color: #0804cc;
+  border: 1px solid #0804cc;
+}
+
+.disable:hover {
+  background-color: #808080;
+  border-color: #808080;
 }
 
 .actions .toggle {
