@@ -1,4 +1,4 @@
-import classes from "./Contactus.module.css";
+import classes from "./contactus.module.css";
 import { Container, Row, Col } from "reactstrap";
 import ContactUsForm from "./ContactUsForm";
 
