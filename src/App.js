@@ -13,12 +13,13 @@ import ContactusPage from './pages/ContactusPage'
 import ProfilePage from './pages/ProfilePage'
 import { action as logoutAction } from './pages/LogoutPage';
 import { tokenLoader, checkAuthLoader, checkAuthTrueLoader } from './util/auth';
+import ErrorPage from './pages/Error';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
     id: 'root',
     loader: tokenLoader,
     children: [
