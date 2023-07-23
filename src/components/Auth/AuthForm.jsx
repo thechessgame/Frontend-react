@@ -20,7 +20,7 @@ const AuthForm = () => {
   let [cpLabel, setCPLabel] = useState("");
   let [pLabel, setPLabel] = useState("");
   let [eLabel, setELabel] = useState("");
-  let [disableBtn, setDisableBtn] = useState(true);
+  let [disableBtn, setDisableBtn] = useState(false);
 
   const disbaleHandler = () => {
     let email = emailInputRef?.current?.value;
