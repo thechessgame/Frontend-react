@@ -120,9 +120,10 @@ const RuleContent = () => {
     <>
       <Container id={classes.rule}>
         <ul className={classes["list-unstyled"]}>
-          {ruleContent.map((data) => {
+          {ruleContent.map((data, i) => {
             return (
               <Content
+                key={i}
                 fontSize={data.fontSize}
                 headingClass={data.headingClass}
                 headingName={data.headingName}

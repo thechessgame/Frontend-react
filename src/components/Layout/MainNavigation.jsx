@@ -37,8 +37,8 @@ const MainNavigation = () => {
       </NavLink>
       <nav style={{ marginTop: "1.5%" }}>
         <ul>
-          {renderBtn.map((key) => (
-            <NavButton to={key.to}>{key.title}</NavButton>
+          {renderBtn.map((key, i) => (
+            <NavButton key={i} to={key.to}>{key.title}</NavButton>
           ))}
           {token && (
             <li>
