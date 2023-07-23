@@ -39,38 +39,30 @@ const router = createBrowserRouter([
       {
         path: 'play',
         element: <PlayPage />,
-        // action: authAction,
         loader: checkAuthLoader,
       },
       {
         path: 'board',
         element: <BoardPage />,
-        // action: authAction,
         loader: checkAuthLoader,
       },
       {
         path: 'faq',
         element: <FaqPage />,
-        // action: authAction,
         loader: checkAuthLoader,
       },
       {
         path: 'rule',
         element: <RulePage />,
-        // action: authAction,
-        loader: checkAuthLoader,
       },
       {
         path: 'contactus',
         element: <ContactusPage />,
-        loader: checkAuthLoader,
-        // action: authAction,
       },
       {
         path: 'profile',
         element: <ProfilePage />,
         loader: checkAuthLoader,
-        // action: authAction,
       },
       {
         path: 'logout',
