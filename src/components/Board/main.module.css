@@ -1,0 +1,14 @@
+.starter {
+  box-shadow: rgba(0, 0, 0, 0.09) 0px -90px 30px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 20px 4px 60px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px 90px 5px;
+
+  /* width: 90%; */
+  /* height: 480px; */
+  /* margin-left: 5%; */
+  /* margin-right: 5%; */
+  background: -webkit-linear-gradient(left, #2d3439, #3c5a6e);
+}
+
+.starter-1 {
+  margin-top: 65px;
+}

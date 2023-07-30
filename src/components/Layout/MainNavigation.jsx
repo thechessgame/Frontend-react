@@ -7,10 +7,10 @@ let navBtn = [
   { to: "/", title: "Home" },
   { to: "/login", title: "Login" },
   { to: "/signup", title: "Singup" },
-  { to: "/profile", title: "Profile" },
-  { to: "/board", title: "Board" },
+  // { to: "/profile", title: "Profile" },
+  // { to: "/board", title: "Board" },
   { to: "/play", title: "Play" },
-  { to: "/faq", title: "F&Q" },
+  // { to: "/faq", title: "F&Q" },
   { to: "/rule", title: "Rule" },
   { to: "/contactus", title: "ContactUs" },
 ];
@@ -38,7 +38,9 @@ const MainNavigation = () => {
       <nav style={{ marginTop: "1.5%" }}>
         <ul>
           {renderBtn.map((key, i) => (
-            <NavButton key={i} to={key.to}>{key.title}</NavButton>
+            <NavButton key={i} to={key.to}>
+              {key.title}
+            </NavButton>
           ))}
           {token && (
             <li>

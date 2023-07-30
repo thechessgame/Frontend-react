@@ -1,0 +1,36 @@
+.square:hover {
+  border-color: gold;
+  border-width: 3px;
+}
+
+.square {
+  cursor: pointer;
+  border: solid;
+  border-radius: 5px;
+  border-width: 1px;
+  display: inline-block;
+  text-align: center;
+  font-weight: lighter;
+}
+
+.odd {
+  background-color: #0fdefa;
+  border-color: black;
+}
+
+.even {
+  background-color: black;
+  border-color: #0fdefa;
+}
+
+.square {
+  height: 50px;
+  width: 50px;
+  font-size: 260%;
+  margin: 1px 3px;
+}
+
+.square:hover {
+  height: 49px;
+  width: 49px;
+}
