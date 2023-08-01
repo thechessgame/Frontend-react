@@ -82,7 +82,12 @@ const AuthForm = () => {
       setULabel("Username is valid, unique and works!!");
     }
 
-    if (isValidPassword && isValidEmail && isValidUsername && (confirmpassword === password || loginPage)) {
+    if (
+      isValidPassword &&
+      isValidEmail &&
+      (isValidUsername || loginPage) &&
+      (confirmpassword === password || loginPage)
+    ) {
       setDisableBtn(false);
     } else {
       setDisableBtn(true);
