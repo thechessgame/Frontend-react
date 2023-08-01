@@ -4,6 +4,8 @@ import { useLocation, useNavigation, Form, Link, useActionData } from "react-rou
 import classes from "./AuthForm.module.css";
 import LoadingSpinner from "../Loader/LoadingSpinner.jsx";
 
+import api from "../../util/api";
+
 const AuthForm = () => {
   const location = useLocation();
   const loginPage = location.pathname.split("/").slice(-1)[0] == "login" ? true : false;
@@ -11,6 +13,7 @@ const AuthForm = () => {
   const confirmpasswordInputRef = useRef();
   const passwordInputRef = useRef();
   const emailInputRef = useRef();
+  const usernameInputRef = useRef();
 
   let navigation = useNavigation();
   let isSubmitting = navigation.state === "submitting";
@@ -18,16 +21,25 @@ const AuthForm = () => {
   let data = useActionData();
 
   let [cpLabel, setCPLabel] = useState("");
+  let [uLabel, setULabel] = useState("");
   let [pLabel, setPLabel] = useState("");
   let [eLabel, setELabel] = useState("");
   let [disableBtn, setDisableBtn] = useState(false);
 
-  const disbaleHandler = () => {
+  const disbaleHandler = async () => {
     let email = emailInputRef?.current?.value;
     let password = passwordInputRef?.current?.value;
     let confirmpassword = confirmpasswordInputRef?.current?.value;
+    let username = usernameInputRef?.current?.value;
+
     let isValidEmail = false;
     let isValidPassword = false;
+    let isValidUsername = false;
+
+    if (username && username.length >= 6 && !username?.match(/\s+/g)?.length) {
+      isValidUsername = (await api.checkUserName(username))?.data?.data;
+    }
+
     if (email) {
       isValidEmail = String(email)
         .toLowerCase()
@@ -62,7 +74,15 @@ const AuthForm = () => {
       setELabel("");
     }
 
-    if (isValidPassword && isValidEmail && (confirmpassword === password || loginPage)) {
+    if (username && !isValidUsername && !username?.match(/\s+/g)?.length) {
+      setULabel("Please enter a unique and 6 or more valid characters");
+    } else if (username && username?.match(/\s+/g)?.length) {
+      setULabel("Space not allowed!!");
+    } else {
+      setULabel("Username is valid, unique and works!!");
+    }
+
+    if (isValidPassword && isValidEmail && isValidUsername && (confirmpassword === password || loginPage)) {
       setDisableBtn(false);
     } else {
       setDisableBtn(true);
@@ -83,6 +103,20 @@ const AuthForm = () => {
                 <section className={classes.error}>
                   <div>{data?.message ? data.message : "Something went wrong"}</div>
                 </section>
+              )}
+              {!loginPage && (
+                <div className={classes.control}>
+                  <label htmlFor="username">User Name</label>
+                  <input
+                    type="text"
+                    id="username"
+                    required
+                    name="username"
+                    onChange={disbaleHandler}
+                    ref={usernameInputRef}
+                  />
+                  {uLabel && <div className={classes.cpLabel}>{uLabel}</div>}
+                </div>
               )}
               <div className={classes.control}>
                 <label htmlFor="email">Email</label>

@@ -2,6 +2,7 @@ import AuthForm from '../components/Auth/AuthForm';
 import { auth } from '../constants/firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { redirect, json } from 'react-router-dom';
+import api from '../util/api';
 
 const AuthPage = () => {
   return <AuthForm />;
@@ -19,6 +20,7 @@ export async function action({ request }) {
   const data = await request.formData();
   let email = data.get('email')
   let password = data.get('password')
+  let username = data.get('username');
 
   let response = null;
   try {
@@ -52,5 +54,16 @@ export async function action({ request }) {
   expiration.setHours(expiration.getHours() + 1);
   localStorage.setItem('expiration', expiration.toISOString());
 
+  try {
+    if (mode === 'signup') {
+      await api.createUser({
+        email, userName: username
+      })
+    }
+  } catch (error) {
+    let errorMsg = "Something went wrong, could not authenticate user.";
+    console.log(error.message)
+    return { message: errorMsg, status: 401 };
+  }
   return redirect('/');
 }
