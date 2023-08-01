@@ -35,7 +35,7 @@ const Profile = () => {
               <Col
                 className="modal fade"
                 id="edit-profile"
-                tabindex="-1"
+                tabndex="-1"
                 role="dialog"
                 aria-labelledby="exampleModalCenterTitle"
                 aria-hidden="true"
@@ -70,7 +70,7 @@ const Profile = () => {
                   <label className="bold-font">User Id</label>
                 </Col>
                 <Col md="8">
-                  <p style={{ color: "blue", "text-shadow": "1px 1px 5px white" }} className="detail-font ">
+                  <p style={{ color: "blue", "textShadow": "1px 1px 5px white" }} className="detail-font ">
                     @mst
                   </p>
                 </Col>

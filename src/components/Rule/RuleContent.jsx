@@ -134,7 +134,7 @@ const RuleContent = () => {
               </Content>
             );
           })}
-          <footer style={{ "margin-left": "80%", color: "#f8f8ff" }}>~ Source WIKIPEDIA</footer>
+          <footer style={{ "marginLeft": "80%", color: "#f8f8ff" }}>~ Source WIKIPEDIA</footer>
         </ul>
       </Container>
     </>

@@ -10,7 +10,7 @@ const Play = () => {
   return (
     <Fragment>
       <Container id="starter" className={`${classes.starter} ${classes["starter"]}`}>
-        {/* <ul id="starter2Nav" style={{ "font-size": "13px", "font-weight": "bold" }} class="nav nav-tabs mt-5">
+        {/* <ul id="starter2Nav" style={{ "fontSize": "13px", "font-weight": "bold" }} class="nav nav-tabs mt-5">
                     <li class="nav-item">
                         <a id="leftStarter2" class="nav-link" href="">NewMatch</a>
                     </li>
@@ -26,7 +26,7 @@ const Play = () => {
             <div className={`${classes["right-side"]}`}>
               <h6>
                 SEARCH PLAYER FOR NEW MATCH <br />{" "}
-                <span style={{ "font-size": "11px" }}>(You can click on play to send request for play new match)</span>
+                <span style={{ fontSize: "11px" }}>(You can click on play to send request for play new match)</span>
               </h6>
             </div>
             <div className={`${classes.searchbar} ${classes["searchbar-left"]} ${classes["left"]}`}>
@@ -35,7 +35,7 @@ const Play = () => {
                 className={classes["search_input"]}
                 type="text"
                 name=""
-                spellcheck="false"
+                spellCheck="false"
                 placeholder="UserName/Name..."
               />
               <a id="leftSearchbtn" className={classes["search-icon"]}>
@@ -96,7 +96,7 @@ const Play = () => {
             <br />
             <div id="bannerHeading" className={classes["banner-heading"]}>
               PLAY <br />
-              <br /> <span style={{ "font-size": "15px" }}>with</span> <br /> FRIENDS
+              <br /> <span style={{ fontSize: "15px" }}>with</span> <br /> FRIENDS
               <br />
             </div>
             <br />
@@ -111,7 +111,7 @@ const Play = () => {
                 className={classes.search_input}
                 type="text"
                 name=""
-                spellcheck="false"
+                spellCheck="false"
                 placeholder="UserName"
               />
             </div>
@@ -123,9 +123,7 @@ const Play = () => {
             <div className={classes["right-side"]}>
               <h6>
                 SEARCH PLAYER FOR PREVIOUS MATCH <br />{" "}
-                <span style={{ "font-size": "11px" }}>
-                  (You can click on resume to send request for continue match)
-                </span>
+                <span style={{ fontSize: "11px" }}>(You can click on resume to send request for continue match)</span>
               </h6>
             </div>
             <div className="h-100">
@@ -135,7 +133,7 @@ const Play = () => {
                   className={classes.search_input}
                   type="text"
                   name=""
-                  spellcheck="false"
+                  spellCheck="false"
                   placeholder="UserName/Name..."
                 />
                 <a id="rightSearchbtn" className={classes["search-icon"]}>
