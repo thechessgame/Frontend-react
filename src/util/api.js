@@ -14,6 +14,9 @@ const api = {
     checkUserName: async (username) => await axiosInstance.get(`/user/checkusername?username=${username}`),
 
     // login
+
+    // contact us
+    submitRequest: async (data) => await axiosInstance.post("/contactus", data)
 };
 
 export default api;

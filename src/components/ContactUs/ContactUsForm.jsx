@@ -1,11 +1,11 @@
 import classes from "./contactusform.module.css";
-import { Container, Row, Col, Form } from "reactstrap";
 import FormGroup from "./FormGroup";
+import { Form } from "react-router-dom";
 
 const ContactUsForm = () => {
   return (
     <>
-      <Form className={classes["contact-form"]}>
+      <Form method="post" className={classes["contact-form"]}>
         <FormGroup labelName="Your Name:" name="fname" placeholder="Enter your name" />
         <FormGroup labelName="Email:" name="email" placeholder="Enter email" />
         <FormGroup labelName="Comment:" name="comment" placeholder="Ask your query..." />
